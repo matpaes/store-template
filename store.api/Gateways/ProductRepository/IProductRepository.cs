@@ -1,12 +1,12 @@
 ﻿using store.api.Entities;
 
-namespace store.api.Gateways.ProductRepository;
+namespace store.api.Gateways.Interfaces;
 
 public interface IProductRepository
 {
-    Task<Product> AddAsync(Product product);
-    Task<Product> UpdateAsync(Product product);
     Task<Product> GetByIdAsync(int id);
     Task<IEnumerable<Product>> GetAllAsync();
+    Task AddAsync(Product product);
+    Task UpdateAsync(Product product);
     Task DeleteAsync(int id);
 }
