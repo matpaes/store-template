@@ -9,13 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DI\**" />
+    <Content Remove="DI\**" />
+    <EmbeddedResource Remove="DI\**" />
+    <None Remove="DI\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.13.1" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.7.0" />
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DI\" />
     <Folder Include="UseCases\Product\Delete\" />
     <Folder Include="UseCases\Product\List\" />
     <Folder Include="UseCases\Product\Get\" />

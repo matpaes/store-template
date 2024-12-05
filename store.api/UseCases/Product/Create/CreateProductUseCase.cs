@@ -1,5 +1,4 @@
-﻿using store.api.Gateways.ProductRepository;
-using store.api.UseCases.Product.Create;
+﻿using store.api.Gateways.Interfaces;
 
 public class CreateProductUseCase
 {
@@ -22,8 +21,8 @@ public class CreateProductUseCase
 
         var productEntity = _mapper.MapToEntity(input);
 
-        var createdProduct = await _productRepository.AddAsync(productEntity);
+        await _productRepository.AddAsync(productEntity);
 
-        return _mapper.MapToOutput(createdProduct);
+        return _mapper.MapToOutput(productEntity);
     }
 }
