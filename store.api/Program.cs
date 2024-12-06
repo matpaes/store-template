@@ -5,6 +5,7 @@ using store.api.UseCases.Product.Delete;
 using store.api.UseCases.Product.Get;
 using store.api.UseCases.Product.List;
 using store.api.UseCases.Product.Update;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +50,8 @@ static async Task ConfigureDataBase(WebApplicationBuilder builder)
 
     var connectionString = await keyVaultGateway.GetSecretAsync("ConnectionStringSqlStore") ?? "";
 
-    builder.Services.AddScoped(provider => new ApplicationDbContext(connectionString));
+    builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
     builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 }
