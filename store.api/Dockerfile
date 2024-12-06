@@ -21,11 +21,11 @@ COPY . .
 
 # Realizando o build
 WORKDIR "/src/."
-RUN dotnet build "store.api.csproj" -c Release -o /app/build -v diag
+RUN dotnet build "./store.api.csproj" -c Release -o /app/build -v diag
 
 # Publicando a aplicação
 FROM build AS publish
-RUN dotnet publish "store.api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./store.api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Definindo o contêiner final
 FROM base AS final
