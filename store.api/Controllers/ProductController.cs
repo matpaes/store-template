@@ -115,7 +115,11 @@ namespace store.api.Controllers
         public async Task<IActionResult> ListProducts()
         {
             var result = await _listProductsUseCase.ExecuteAsync();
-            return Ok(result);
+
+            if (result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
 
         /// <summary>
