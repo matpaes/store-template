@@ -1,6 +1,9 @@
 ﻿using store.api.Gateways.Interfaces;
-
-public class CreateProductUseCase
+public interface ICreateProductUseCase
+{
+    Task<CreateProductOutput> Execute(CreateProductInput input);
+}
+public class CreateProductUseCase : ICreateProductUseCase
 {
     private readonly IProductRepository _productRepository;
     private readonly ICreateProductMapper _mapper;
