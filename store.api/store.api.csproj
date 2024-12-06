@@ -25,10 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Product\Delete\" />
-    <Folder Include="UseCases\Product\List\" />
-    <Folder Include="UseCases\Product\Get\" />
-    <Folder Include="UseCases\Product\Update\" />
+    <Folder Include="Infra\" />
   </ItemGroup>
 
 </Project>
