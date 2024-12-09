@@ -53,18 +53,11 @@ builder.Services.AddAuthorization(options =>
 await ConfigureDataBase(builder);
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
 
 static async Task ConfigureDataBase(WebApplicationBuilder builder)
