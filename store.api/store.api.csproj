@@ -10,9 +10,13 @@
 
   <ItemGroup>
     <Compile Remove="DI\**" />
+    <Compile Remove="Infra\**" />
     <Content Remove="DI\**" />
+    <Content Remove="Infra\**" />
     <EmbeddedResource Remove="DI\**" />
+    <EmbeddedResource Remove="Infra\**" />
     <None Remove="DI\**" />
+    <None Remove="Infra\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,10 +32,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Infra\" />
   </ItemGroup>
 
 </Project>
