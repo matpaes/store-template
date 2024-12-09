@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_BF95B056655A459E9B9B0017C64F5117 }}
 
     - name: Build Docker image
-      run: docker build -t store-portal-back:${{ github.sha }} -f ./store.api/Dockerfile .  
+      run: docker build -t matpaes/store-template:${{ github.sha }} -f ./store.api/Dockerfile .  
 
   deploy:
     runs-on: ubuntu-latest
