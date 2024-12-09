@@ -25,9 +25,9 @@ jobs:
         registry: mcr.microsoft.com  
         username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}
         password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_BF95B056655A459E9B9B0017C64F5117 }}
-        
+
     - name: Debug container username
-      run: echo "Registry: mcr.microsoft.com/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}"
+      run: echo "mcr.microsoft.com/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}"
 
     - name: Build and push container image to Azure Web App
       uses: docker/build-push-action@v3
