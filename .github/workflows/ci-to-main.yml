@@ -1,0 +1,36 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.0.x  
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish Test Results
+      if: success() || failure()
+      run: |
+        mkdir -p $(System.DefaultWorkingDirectory)/TestResults
+        dotnet test --no-build --logger "trx;LogFileName=test_results.trx"
+        mv test_results.trx $(System.DefaultWorkingDirectory)/TestResults/test_results.trx
+    - name: Upload Test Results to GitHub
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: $(System.DefaultWorkingDirectory)/TestResults/test_results.trx
