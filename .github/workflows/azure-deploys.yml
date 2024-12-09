@@ -31,8 +31,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: mcr.microsoft.com
-          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME }}  
-          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD }} 
+          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}  
+          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_BF95B056655A459E9B9B0017C64F5117 }} 
 
       - name: Deploy to Azure Web App (via App Service)
         id: deploy-to-webapp
@@ -40,7 +40,7 @@ jobs:
         with:
           app-name: 'store-portal-back' 
           slot-name: 'production'  
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AE83A0784854416089A13AEF97857EA0 }}  
           images: 'mcr.microsoft.com/store-template:${{ github.sha }}'  
-          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME }}  
-          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD }} 
+          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}  
+          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_BF95B056655A459E9B9B0017C64F5117 }} 
