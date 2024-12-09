@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DeqBwD72KoJ+m7TyEIWGujiGHJ4X3HJevdem4O6OCrjkm8j4G6sxaaMwZZqqy8m9tgkjk6f7gn7Y3G2znbjrLA==",
+  "dgSpecHash": "He5X3AVTi59QJuhI0afUORADAoka2WP0jBEaohX9S/3pcgkJ6+Qga5+ruGi7fWj0/gJm6869TdPc4QNe/7BcBQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\mathe\\Desktop\\Projetos\\store-template\\store.api\\store.api.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\mathe\\.nuget\\packages\\azure.identity\\1.13.1\\azure.identity.1.13.1.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\azure.security.keyvault.secrets\\4.7.0\\azure.security.keyvault.secrets.4.7.0.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\mathe\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.36\\microsoft.aspnetcore.authentication.jwtbearer.6.0.36.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.7\\microsoft.data.sqlclient.2.1.7.nupkg.sha512",
