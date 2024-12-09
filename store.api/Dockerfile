@@ -16,11 +16,10 @@ RUN ls -la
 # Restaurando as dependências
 RUN dotnet restore "./store.api.csproj"
 
-# Copiando o restante do código
+# Copiando o restante do código para dentro do contêiner
 COPY . .
 
 # Realizando o build
-WORKDIR "/src/."
 RUN dotnet build "./store.api.csproj" -c Release -o /app/build -v diag
 
 # Publicando a aplicação
