@@ -19,23 +19,12 @@ jobs:
     - name: Build Docker image
       run: docker build -t store-portal-back:${{ github.sha }} -f ./store.api/Dockerfile .
 
-    - name: Log in to Azure Container Registry (Optional)
-      uses: docker/login-action@v2
-      with:
-        registry: mcr.microsoft.com  
-        username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}
-        password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_BF95B056655A459E9B9B0017C64F5117 }}
-
-    - name: Debug container username
-      run: echo "mcr.microsoft.com/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}"
-
     - name: Build and push container image to Azure Web App
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}/appsvc/staticsite:${{ github.sha }}
+        tags: store-portal-back:${{ github.sha }}  # Use o nome correto para a imagem
         file: ./store.api/Dockerfile
-        context: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,5 +40,7 @@ jobs:
       with:
         app-name: 'store-portal-back'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AE83A0784854416089A13AEF97857EA0 }} 
-        images: 'mcr.microsoft.com/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-url: 'store-portal-back-f9fcd9gsdxhxd3f2.scm.brazilsouth-01.azurewebsites.net:443' # URL do publish profile
+        username: '$store-portal-back'  # Username do publish profile
+        password: 'sjb70qxywqPFqPwHmbX0gQblya48fkeCDErYlrLCHSnFTc5fEqia8TXF3eHj'  # Senha do publish profile
+        images: 'store-portal-back:${{ github.sha }}'  # Use o nome da imagem com o tag correto
