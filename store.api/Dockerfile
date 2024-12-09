@@ -14,17 +14,17 @@ COPY ["store.api/store.api.csproj", "."]
 RUN ls -la
 
 # Restaurando as dependências
-RUN dotnet restore "./store.api.csproj"
+RUN dotnet restore "./store.api/store.api.csproj"
 
 # Copiando o restante do código para dentro do contêiner
 COPY . .
 
 # Realizando o build
-RUN dotnet build "./store.api.csproj" -c Release -o /app/build -v diag
+RUN dotnet build "./store.api/store.api.csproj" -c Release -o /app/build -v diag
 
 # Publicando a aplicação
 FROM build AS publish
-RUN dotnet publish "./store.api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./store.api/store.api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Definindo o contêiner final
 FROM base AS final
