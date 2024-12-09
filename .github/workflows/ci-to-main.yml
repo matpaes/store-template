@@ -16,18 +16,20 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x  
+        dotnet-version: 6.0.x
+    - name: List files in the current directory
+      run: ls -al  
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore store.api/store.api.sln 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build store.api/store.api.sln --no-restore  
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test store.test/store.test.csproj --no-build --verbosity normal  
     - name: Publish Test Results
       if: success() || failure()
       run: |
         mkdir -p $(System.DefaultWorkingDirectory)/TestResults
-        dotnet test --no-build --logger "trx;LogFileName=test_results.trx"
+        dotnet test store.test/store.test.csproj --no-build --logger "trx;LogFileName=test_results.trx"
         mv test_results.trx $(System.DefaultWorkingDirectory)/TestResults/test_results.trx
     - name: Upload Test Results to GitHub
       uses: actions/upload-artifact@v3
