@@ -18,6 +18,9 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t mcr.microsoft.com/store-template:${{ github.sha }} -f ./store.api/Dockerfile .
+      
+      - name: Push Docker image to MCR
+        run: docker push mcr.microsoft.com/store-template:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
