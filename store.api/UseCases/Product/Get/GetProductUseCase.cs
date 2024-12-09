@@ -26,6 +26,7 @@ public class GetProductUseCase : IGetProductUseCase
             Id = product.Id,
             Name = product.Name,
             Price = product.Price,
+            Description = product.Description,
             Stock = product.Stock
         };
     }

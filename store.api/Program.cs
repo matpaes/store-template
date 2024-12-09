@@ -5,6 +5,10 @@ using store.api.UseCases.Product.Delete;
 using store.api.UseCases.Product.Get;
 using store.api.UseCases.Product.List;
 using store.api.UseCases.Product.Update;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +26,28 @@ builder.Services.AddScoped<IGetProductUseCase, GetProductUseCase>();
 builder.Services.AddScoped<IListProductUseCase, ListProductUseCase>();
 builder.Services.AddScoped<IDeleteProductUseCase, DeleteProductUseCase>();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = true,
+            ValidateLifetime = false,
+            ValidateIssuerSigningKey = false,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
+        };
+    });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdminRole", policy =>
+    {
+        policy.RequireRole("Admin");
+    });
+});
 
 
 await ConfigureDataBase(builder);
@@ -35,6 +60,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
@@ -49,7 +75,8 @@ static async Task ConfigureDataBase(WebApplicationBuilder builder)
 
     var connectionString = await keyVaultGateway.GetSecretAsync("ConnectionStringSqlStore") ?? "";
 
-    builder.Services.AddScoped(provider => new ApplicationDbContext(connectionString));
+    builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
     builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 }

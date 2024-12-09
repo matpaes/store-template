@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using store.api.UseCases.Product.Delete;
 using store.api.UseCases.Product.Get;
 using store.api.UseCases.Product.List;
@@ -37,6 +38,7 @@ namespace store.api.Controllers
         /// <param name="input">Dados do produto a ser criado.</param>
         /// <returns>Detalhes do produto criado.</returns>
         [HttpPost]
+        [Authorize(Policy = "RequireAdminRole")]
         [ProducesResponseType(typeof(CreateProductOutput), 201)]
         [ProducesResponseType(400)]
         [SwaggerOperation(
@@ -90,6 +92,7 @@ namespace store.api.Controllers
         /// <param name="id">ID do produto.</param>
         /// <returns>Detalhes do produto.</returns>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(GetProductOutput), 200)]
         [ProducesResponseType(404)]
         [SwaggerOperation(
@@ -107,6 +110,7 @@ namespace store.api.Controllers
         /// </summary>
         /// <returns>Uma lista de produtos.</returns>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(IEnumerable<ListProductOutput>), 200)]
         [SwaggerOperation(
             Summary = "Lista todos os produtos",
@@ -115,7 +119,11 @@ namespace store.api.Controllers
         public async Task<IActionResult> ListProducts()
         {
             var result = await _listProductsUseCase.ExecuteAsync();
-            return Ok(result);
+
+            if (result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
 
         /// <summary>

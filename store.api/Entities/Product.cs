@@ -8,7 +8,11 @@ public class Product
     public int Stock { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
-
+    public DateTime DeletedAt { get; private set; }
+    public Product()
+    {
+            
+    }
     public Product(string name, string description, decimal price, int stock)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -36,6 +40,8 @@ public class Product
         Name = name;
         SetUpdatedAt();
     }
+
+    public void Delete() => DeletedAt = DateTime.UtcNow;
 
     public void UpdateDescription(string description)
     {

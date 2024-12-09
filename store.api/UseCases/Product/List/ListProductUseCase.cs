@@ -23,8 +23,7 @@ public class ListProductUseCase : IListProductUseCase
         {
             Id = product.Id,
             Name = product.Name,
-            Price = product.Price,
-            Stock = product.Stock
+            Price = product.Price
         });
     }
 }
