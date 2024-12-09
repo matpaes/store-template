@@ -32,6 +32,6 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'store-portal-back'  # Nome do App Service
-          images: 'storeportal.azurecr.io/store-template:${{ github.sha }}'  # Imagem no ACR
+          app-name: 'store-portal-back'  
+          images: 'storeportal.azurecr.io/store-template:${{ github.sha }}' 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AE83A0784854416089A13AEF97857EA0 }}
