@@ -40,7 +40,7 @@ jobs:
       with:
         app-name: 'store-portal-back'
         slot-name: 'production'
-        publish-url: 'store-portal-back-f9fcd9gsdxhxd3f2.scm.brazilsouth-01.azurewebsites.net:443' # URL do publish profile
-        username: '$store-portal-back'  # Username do publish profile
-        password: 'sjb70qxywqPFqPwHmbX0gQblya48fkeCDErYlrLCHSnFTc5fEqia8TXF3eHj'  # Senha do publish profile
-        images: 'store-portal-back:${{ github.sha }}'  # Use o nome da imagem com o tag correto
+        publish-url: 'store-portal-back-f9fcd9gsdxhxd3f2.scm.brazilsouth-01.azurewebsites.net:443'  
+        username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_8E8AD3434E7A4B7B9713E0875E7FD1F5 }}  
+        password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_BF95B056655A459E9B9B0017C64F5117 }}  #
+        images: 'store-portal-back:${{ github.sha }}'  
