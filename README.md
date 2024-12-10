@@ -64,8 +64,8 @@ As tarefas do projeto são organizadas no GitHub através do board de tarefas. C
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   cd nome-do-repositorio
+   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/matpaes/store-template.git)
+   cd store-template
 ****
 
 2. Configuração do SQL Server com Docker
